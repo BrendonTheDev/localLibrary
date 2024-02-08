@@ -3,10 +3,25 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const mongoose = require("mongoose");
 
+// mongoose setup
+mongoose.set("strictQuery", false);
+
+// define database url to connect to
+const mongoDB =
+  "mongodb+srv://brendon:Wetdog22@cluster0.lz91hw2.mongodb.net/local_library?retryWrites=true&w=majority";
+// wait for database URL to connect to.
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
+
+// access routers
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 
+// instantiate express app
 const app = express();
 
 // view engine setup
