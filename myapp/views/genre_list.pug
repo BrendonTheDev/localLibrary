@@ -1,13 +1,13 @@
-extends layout 
+extends layout
 
-block content 
-  h1= name
-
-  if list_genres.length 
+block content
+  h1= title
+  
+  if list_genres.length
     ul
-      each val in list_genres
-       li
-         a(href=val.url) #{val.name}
+      each genre in list_genres
+        li
+          a(href=genre.url) #{genre.name}
 
-  else 
+  else
     p There are no genres.
